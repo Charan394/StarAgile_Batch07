@@ -49,6 +49,7 @@ To schedule a job, we will use CRON expression
 * * * * *	-----> Every minute
 H/2 * * * * -----> Every 30 minutes
 H * * * * ----> Every 60 minutes
+=> while using cron expression you should specify it in UTC timezone not indian , all the servers follow utc timezone
 
 Poll SCM will wait for 1 minute, and if there is a change committed in that 1 minute, Jenkins will trigger the job
 Poll SCM has a wait time
@@ -101,7 +102,26 @@ JENKINS_URL/job/trigger-remotely/build?token=TOKEN_NAME
 
 16. Jenkins Freestyle Project 
 https://github.com/KastroVKiran/tomcat-app-kastro.git
+charan => so basically here he explains how you can connect jenkins and tomcat ( obviosly via plugins : that is their purpose) ,
+prviously you just copied the .war file to webapps folder because both were on the same machine , here he does it differently
 
+plugin -name : deploy to container
+ both jenkins and tomcat run on 8080
+== here he explains how to set up tomcat
+ ** if ther are on machine , we can change the port number of tomcat 
+ by editing conf/server.xml file , you have to change "connector port" not the "server port "
+** in order to access admin dasboard , we have to add a user to conf/tomcat-users.xml file 
+	two tags you should know  manager-script and manager-gui , the guidlines will be given in the files
+	imp- without "manager-script" role assigned deployement wont happen
+** by deafult tomcat blocks certain ip we have to  comment out "valve" inside /webapps/manager/META-INF/context.xml
+
+
+not the process :
+**adding post build actions to actually deploy it to tomcat, using the plugin you installed ,
+--> **/*.war will recursively search for the war file in folders 
+--> context-path , the name used on the tomcat server
+--> now in add container - you will add credentials for the tomcat user you prviosly configured and also specify the url tomcat is
+	running on.
 
 
 
