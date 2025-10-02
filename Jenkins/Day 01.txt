@@ -134,6 +134,8 @@ sudo yum install httpd -y
 sudo systemctl enable httpd
 sudo systemctl start httpd
 
+charan- jenkins user by default cannot execute sudo command , you to give it required prvileages to do so , look into how to do this.
+
 Assignment
 
 5. This Project is Parameterized
@@ -162,6 +164,7 @@ Ex: Lets say i want only 2 builds to happen in 1 hour of time
 7. Integrate the Public GitHub Repo with Jenkins 
 
 8. Build the code available in Public Repo using Jenkins
+
 
 
 
